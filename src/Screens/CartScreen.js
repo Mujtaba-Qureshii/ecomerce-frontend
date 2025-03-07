@@ -55,7 +55,7 @@ const CartScreen = () => {
                     Your Cart is empty <Link to='/'>Go Back</Link>
                 </Message>)
                     : (<ListGroup variant='flush'>
-                        {cartItems.map(item =>
+                        {cartItems?.map(item =>
                             <ListGroup.Item key={item.product}>
                                 <Row>
                                     <Col md={3}>
@@ -67,7 +67,7 @@ const CartScreen = () => {
                                             onChange={(e) => dispatch(addToCart(item.product,
                                                 Number(e.target.value)))}>
                                             {
-                                                [...Array(item.countInStock).keys()].map(x =>
+                                                [...Array(item.countInStock)?.keys()]?.map(x =>
 
                                                     <option key={x + 1} value={x + 1}>
                                                         {x + 1}

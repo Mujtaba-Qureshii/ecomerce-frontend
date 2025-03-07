@@ -1,3 +1,4 @@
+import API_URL from "../config"
 import { CREATE_ORDER_FAILURE,
      CREATE_ORDER_REQUEST,
       CREATE_ORDER_SUCCESS,
@@ -19,6 +20,7 @@ import { CREATE_ORDER_FAILURE,
            } from "../constants/orderConstant"
 import axios from 'axios'
 
+
 export const createOrder = (order) => async (dispatch,getState) => {
 
     try {
@@ -34,7 +36,7 @@ export const createOrder = (order) => async (dispatch,getState) => {
         }
        }
 
-       const {data} = await axios.post('/api/orders',order, config)
+       const {data} = await axios.post(`${API_URL}/api/orders`,order, config)
 
    dispatch({
     type:CREATE_ORDER_SUCCESS,
@@ -68,7 +70,7 @@ export const getOrderDetails = (id) => async (dispatch,getState) => {
         }
        }
 
-       const {data} = await axios.get(`/api/orders/${id}`,config)
+       const {data} = await axios.get(`${API_URL}/api/orders/${id}`,config)
 
    dispatch({ 
     type:ORDER_DETAILS_SUCCESS,
@@ -102,7 +104,7 @@ export const orderPay = (id,paymentResult) => async (dispatch,getState) => {
         }
        }
 
-       const {data} = await axios.put(`/api/orders/${id}/pay`,paymentResult, config)
+       const {data} = await axios.put(`${API_URL}/api/orders/${id}/pay`,paymentResult, config)
 
    dispatch({
     type:ORDER_PAY_SUCCESS,
@@ -136,7 +138,7 @@ export const orderDeliver = (id) => async (dispatch,getState) => {
         }
        }
 
-       const {data} = await axios.put(`/api/orders/${id}/deliver`,{}, config)
+       const {data} = await axios.put(`${API_URL}/api/orders/${id}/deliver`,{}, config)
 
    dispatch({
     type:ORDER_DELIVER_SUCCESS,
@@ -167,7 +169,7 @@ export const listMyOrder = () => async (dispatch,getState) => {
         headers: { Authorization: `Bearer ${userInfo.token}` }
        }
 
-       const {data} = await axios.get(`/api/orders/myorders`,config)
+       const {data} = await axios.get(`${API_URL}/api/orders/myorders`,config)
 
    dispatch({
     type:LIST_MY_ORDER_SUCCESS,
@@ -201,7 +203,7 @@ export const listOrders = () => async (dispatch,getState) => {
         headers: { Authorization: `Bearer ${userInfo.token}` }
        }
 
-       const {data} = await axios.get(`/api/orders`,config)
+       const {data} = await axios.get(`${API_URL}/api/orders`,config)
 
    dispatch({
     type:ORDER_LIST_SUCCESS,
